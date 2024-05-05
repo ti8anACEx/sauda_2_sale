@@ -1,0 +1,45 @@
+const appname = "Saras";
+const appnameWithSpacing = "S A R A S";
+const appversion = "1.0.0";
+const credits = "@Jit Deb Nath";
+const appFor = "Stack Blocks / Orcas";
+const developerName = "Jit Deb Nath";
+const email = "Email";
+const emailHint = "example@provider.com";
+const password = "Password";
+const passwordHint = "*******";
+const forgetPass = "Forget Password";
+const loginText = "Log-In";
+const signUp = "Sign-Up";
+const createNewAcc = "or, Create New Account";
+const loginWith = "Login with";
+const retypePass = "Re-Type Password";
+const retypePassHint = "********";
+const name = "Name";
+const nameHint = "Arya Bhatta";
+const privacyPolicy = "Privacy Policy";
+const termsAndCond = "Terms and Conditions";
+const alreadyHaveAcc = "Already have an account? ";
+
+// RELATIVE ASSET IMAGE PATHS
+
+const String appleIconPath = 'assets/images/apple_icon.png';
+const String googleIconPath = 'assets/images/google_icon.png';
+const String orcasIconPath = 'assets/images/orcas_icon.png';
+const String bgImagePath = 'assets/images/bg_image.jpg';
+const String searchIconPath = 'assets/images/search_icon.png';
+const String orcasIconWhite = 'assets/images/orcas_icon_white.png';
+const String userFollowIcon = 'assets/images/user_follow_icon.png';
+const String storeIcon = 'assets/images/store_icon.png';
+const String shareIcon = 'assets/images/share_icon.png';
+const String shortsIcon = 'assets/images/shorts_icon.png';
+const String notificationIcon = 'assets/images/notification.png';
+const String likeIcon = 'assets/images/LIKE.png';
+const String homeIcon = 'assets/images/home_icon.png';
+const String commentIcon = 'assets/images/comment.png';
+const String communityIcon = 'assets/images/community.png';
+const String commentLikeIcon = 'assets/images/comment_like.png';
+const String sendIcon = 'assets/images/send.png';
+const String searchPageSearchIcon = 'assets/images/search_page_search_icon.png';
+const String fireIconPath = 'assets/images/fire_icon.png';
+const String bgimageBlackPath = 'assets/images/bg_image_black.jpg';
