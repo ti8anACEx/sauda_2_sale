@@ -17,57 +17,64 @@ class OTPPage extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Spacer(),
-            50.heightBox,
-            "Sauda Book".text.size(35).semiBold.make(),
-            15.heightBox,
-            "OTP Verification".text.size(22).fontWeight(FontWeight.w500).make(),
-            10.heightBox,
-            "Enter the OTP sent to +91 ${authController.passwordController.text}"
-                .text
-                .size(20)
-                .fontWeight(FontWeight.w500)
-                .make(),
-            20.heightBox,
-            OtpTextField(
-              keyboardType: TextInputType.number,
-              numberOfFields: authController.verificationCodeLength,
-              borderColor: const Color(0xFF512DA8),
-              onCodeChanged: (String code) {},
-              onSubmit: (String verificationCode) {
-                authController.verificationCodeEntered.value = verificationCode;
-                authController.verifyOTP();
-              }, // end onSubmit
-            ),
-            20.heightBox,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                "Didn't you receive the OTP? ".text.size(18).make(),
-                "Resend OTP"
-                    .text
-                    .size(18)
-                    .color(pinkColor)
-                    .make()
-                    .onTap(() async {
-                  await authController.resendOTP();
-                }),
-              ],
-            ),
-            20.heightBox,
-            CustomButton(
-              text: "Verify",
-              mainAxisAlignment: MainAxisAlignment.center,
-              onTap: () async {
-                await authController.verifyOTP();
-              },
-              color: pinkColor,
-            ),
-            50.heightBox,
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              20.heightBox,
+              Image.asset('assets/images/sauda2sale_png.png'),
+              25.heightBox,
+              "Sauda Book".text.size(35).semiBold.make(),
+              25.heightBox,
+              "Enter the OTP sent to +91 ${authController.phoneNumberController.text}"
+                  .text
+                  .align(TextAlign.center)
+                  .size(12)
+                  .fontWeight(FontWeight.w500)
+                  .make(),
+              20.heightBox,
+              OtpTextField(
+                enabledBorderColor: blackColor,
+                keyboardType: TextInputType.number,
+                numberOfFields: authController.verificationCodeLength,
+                borderColor: const Color(0xFF512DA8),
+                onCodeChanged: (String code) {},
+                onSubmit: (String verificationCode) {
+                  authController.verificationCodeEntered.value =
+                      verificationCode;
+                  authController.verifyOTP();
+                }, // end onSubmit
+              ),
+              20.heightBox,
+              Wrap(
+                alignment: WrapAlignment.center,
+                runSpacing: 10,
+                spacing: 10,
+                children: [
+                  "Didn't you receive the OTP? ".text.size(12).make(),
+                  "Resend OTP"
+                      .text
+                      .size(13)
+                      .fontWeight(FontWeight.bold)
+                      .color(darkPinkColor)
+                      .make()
+                      .onTap(() async {
+                    await authController.resendOTP();
+                  }),
+                ],
+              ),
+              20.heightBox,
+              CustomButton(
+                text: "Verify",
+                mainAxisAlignment: MainAxisAlignment.center,
+                onTap: () async {
+                  await authController.verifyOTP();
+                },
+                color: pinkColor,
+              ),
+              50.heightBox,
+            ],
+          ),
         ),
       ),
     );

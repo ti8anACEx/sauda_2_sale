@@ -25,10 +25,10 @@ class ProductImages extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
                   child: Image.network(
-                      height: 300,
+                      width: 300,
                       itemController.itemModel!.draftImageLinks[
                           itemController.displayingImageIndex.value],
-                      fit: BoxFit.fitHeight),
+                      fit: BoxFit.fitWidth),
                 ),
               ),
             ),

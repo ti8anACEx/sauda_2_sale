@@ -17,44 +17,46 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 30),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            const Spacer(),
-            50.heightBox,
-            "Sauda Book".text.size(35).semiBold.make(),
-            50.heightBox,
-            customTextField(
-                labelText: 'Username',
-                controller: authController.usernameController),
-            10.heightBox,
-            customTextField(
-                labelText: 'Phone Number',
-                textInputType: TextInputType.phone,
-                controller: authController.phoneNumberController),
-            10.heightBox,
-            customTextField(
-                labelText: 'Email',
-                textInputType: TextInputType.emailAddress,
-                controller: authController.emailController),
-            10.heightBox,
-            customTextField(
-                labelText: 'Password',
-                controller: authController.passwordController),
-            100.heightBox,
-            CustomButton(
-              text: "Get OTP",
-              trailingWidget: const Icon(
-                Icons.arrow_forward_ios,
-                color: whiteColor,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('assets/images/sauda2sale_png.png'),
+              50.heightBox,
+              "Sauda Book".text.size(35).semiBold.make(),
+              50.heightBox,
+              customTextField(
+                  labelText: 'Name',
+                  controller: authController.usernameController),
+              20.heightBox,
+              customTextField(
+                  labelText: 'Phone Number',
+                  textInputType: TextInputType.phone,
+                  controller: authController.phoneNumberController),
+              20.heightBox,
+              customTextField(
+                  labelText: 'Email',
+                  textInputType: TextInputType.emailAddress,
+                  controller: authController.emailController),
+              20.heightBox,
+              customTextField(
+                  labelText: 'Password',
+                  controller: authController.passwordController),
+              100.heightBox,
+              CustomButton(
+                text: "Get OTP",
+                trailingWidget: const Icon(
+                  Icons.arrow_forward_ios,
+                  color: whiteColor,
+                ),
+                onTap: () async {
+                  await authController.getOTP();
+                },
+                color: pinkColor,
               ),
-              onTap: () async {
-                await authController.getOTP();
-              },
-              color: pinkColor,
-            ),
-            50.heightBox,
-          ],
+              50.heightBox,
+            ],
+          ),
         ),
       ),
     );

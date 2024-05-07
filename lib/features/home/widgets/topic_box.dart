@@ -18,36 +18,43 @@ class TopicBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Obx(
       () => Padding(
-        padding: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(8.0).copyWith(top: 2, bottom: 17),
         child: Material(
-          elevation: 21,
+          color: fontGrey,
           borderRadius: BorderRadius.circular(25),
           child: Padding(
-            padding: const EdgeInsets.all(7).copyWith(left: 11, right: 11),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  text,
-                  style: GoogleFonts.poppins(
-                    textStyle: Theme.of(context).textTheme.displayLarge,
-                    fontSize: 19,
-                    letterSpacing: 1.2,
-                    fontWeight: FontWeight.w500,
-                  ),
+            padding: const EdgeInsets.all(2),
+            child: Material(
+              color: whiteColor,
+              borderRadius: BorderRadius.circular(25),
+              child: Padding(
+                padding: const EdgeInsets.all(7).copyWith(left: 25, right: 25),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      text,
+                      style: GoogleFonts.poppins(
+                        textStyle: Theme.of(context).textTheme.displayLarge,
+                        fontSize: 15,
+                        letterSpacing: 1.2,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    homeController.currentTag.value == text
+                        ? const WidthBox(5)
+                        : Container(),
+                    homeController.currentTag.value == text
+                        ? const Icon(Icons.close_rounded,
+                            size: 17, color: textfieldGrey)
+                        : Container(),
+                  ],
                 ),
-                homeController.currentTag.value == text
-                    ? const WidthBox(5)
-                    : Container(),
-                homeController.currentTag.value == text
-                    ? const Icon(Icons.close_rounded,
-                        size: 17, color: textfieldGrey)
-                    : Container(),
-              ],
+              ).onTap(() {
+                homeController.updateCurrentTag(text);
+              }),
             ),
-          ).onTap(() {
-            homeController.updateCurrentTag(text);
-          }),
+          ),
         ),
       ),
     );

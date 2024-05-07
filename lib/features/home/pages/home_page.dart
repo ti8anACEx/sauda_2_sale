@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
@@ -6,6 +7,7 @@ import 'package:sauda_2_sale/commons/widgets/custom_progress_indicator.dart';
 import 'package:sauda_2_sale/commons/widgets/custom_search_bar.dart';
 import 'package:sauda_2_sale/constants/colors.dart';
 import 'package:sauda_2_sale/constants/lists.dart';
+import 'package:sauda_2_sale/features/auth/pages/login_page.dart';
 import 'package:sauda_2_sale/features/home/controllers/home_controller.dart';
 import 'package:sauda_2_sale/features/home/controllers/item_controller.dart';
 import 'package:sauda_2_sale/features/home/widgets/item_card.dart';
@@ -34,40 +36,45 @@ class HomePage extends StatelessWidget {
           body: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // "Logout".text.make().onTap(() async {
+              //   await FirebaseAuth.instance.signOut();
+              // }),
               Container(
-                color: pinkColor,
+                decoration: BoxDecoration(
+                  color: textfieldGrey.withOpacity(0.8),
+                  borderRadius: const BorderRadius.only(
+                    bottomLeft: Radius.circular(25),
+                    bottomRight: Radius.circular(25),
+                  ),
+                ),
+                width: context.screenWidth,
                 child: Column(
                   children: [
                     // Search Bar
                     15.heightBox,
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0)
+                          .copyWith(left: 12, right: 15),
                       child: customSearchBar(),
                     ),
                     10.heightBox,
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: List.generate(customTags.length, (index) {
-                          return TopicBox(
-                            text: customTags[index]['title'],
-                          );
-                        }),
+                      child: Padding(
+                        padding: const EdgeInsets.only(right: 8),
+                        child: Row(
+                          children: List.generate(customTags.length, (index) {
+                            return TopicBox(
+                              text: customTags[index]['title'],
+                            ).onTap(() async {});
+                          }),
+                        ),
                       ),
                     ),
-                    10.heightBox,
+                    20.heightBox,
                   ],
                 ),
-              ),
-              7.heightBox,
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: "Recent Uploads"
-                    .text
-                    .size(20)
-                    .fontWeight(FontWeight.w600)
-                    .make(),
-              ),
+              ).box.roundedSM.make(),
               10.heightBox,
               Obx(
                 () => Expanded(

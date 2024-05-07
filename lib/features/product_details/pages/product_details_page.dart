@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sauda_2_sale/commons/widgets/custom_box.dart';
 import 'package:sauda_2_sale/commons/widgets/custom_button.dart';
 import 'package:sauda_2_sale/constants/colors.dart';
 import 'package:sauda_2_sale/features/home/controllers/item_controller.dart';
@@ -83,19 +84,25 @@ class ProductDetailsPage extends StatelessWidget {
                       ],
                     ),
                     15.heightBox,
-                    Row(
+                    customBox(
+                        child: Column(
                       children: [
-                        "Weaver : ".text.bold.make(),
-                        itemController.itemModel!.weaver.text.make(),
+                        Row(
+                          children: [
+                            "Weaver : ".text.bold.make(),
+                            itemController.itemModel!.weaver.text.make(),
+                          ],
+                        ),
+                        5.heightBox,
+                        Row(
+                          children: [
+                            "Number : ".text.bold.make(),
+                            itemController.itemModel!.weaverPhoneNumber.text
+                                .make(),
+                          ],
+                        ),
                       ],
-                    ),
-                    5.heightBox,
-                    Row(
-                      children: [
-                        "Number : ".text.bold.make(),
-                        itemController.itemModel!.weaverPhoneNumber.text.make(),
-                      ],
-                    ),
+                    )),
                     15.heightBox,
                     Row(
                       children: [

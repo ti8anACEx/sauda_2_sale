@@ -10,16 +10,20 @@ Widget customTextField(
   return TextField(
     controller: controller,
     decoration: InputDecoration(
+      fillColor: fontGrey.withOpacity(0.15),
+      filled: true,
       labelText: labelText,
-      labelStyle: const TextStyle(fontWeight: FontWeight.w300),
-      contentPadding: const EdgeInsets.all(10.0),
+      labelStyle: const TextStyle(fontWeight: FontWeight.w200, fontSize: 12),
+      contentPadding: const EdgeInsets.all(8.0),
       enabledBorder: const UnderlineInputBorder(
         borderSide: BorderSide(color: Colors.black, width: 2.0),
-        borderRadius: BorderRadius.zero,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10), topRight: Radius.circular(10)),
       ),
-      focusedBorder: UnderlineInputBorder(
+      focusedBorder: const UnderlineInputBorder(
         borderSide: BorderSide(color: pinkColor, width: 2.0),
-        borderRadius: BorderRadius.zero,
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(10), topRight: Radius.circular(10)),
       ),
       hintText: hint,
       hintStyle: const TextStyle(color: Colors.black),

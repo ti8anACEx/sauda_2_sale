@@ -24,3 +24,4 @@ Color deepPurpleColor = const Color(0xFF6052F0);
 Color transparentColor = Colors.transparent;
 const Color pinkColor = Color.fromRGBO(203, 62, 249, 0.5);
 const Color darkPinkColor = Color.fromRGBO(203, 62, 249, 1);
+Color greyLite = textfieldGrey.withOpacity(0.8);

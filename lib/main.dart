@@ -4,7 +4,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:sauda_2_sale/confidential/firebase_options.dart';
 import 'package:sauda_2_sale/features/auth/controllers/auth_controller.dart';
-
 import 'constants/colors.dart';
 import 'features/auth/pages/splash_page.dart';
 
