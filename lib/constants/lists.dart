@@ -127,27 +127,17 @@ List customTags = [
     'textColor': Colors.white,
   },
   {
-    'title': 'Price',
-    'color': const Color.fromRGBO(194, 238, 243, 1),
-    'textColor': const Color.fromRGBO(40, 40, 40, 1),
-  },
-  {
     'title': 'Rate',
     'color': const Color.fromRGBO(212, 253, 219, 1),
     'textColor': Colors.black,
   },
   {
-    'title': 'Type',
-    'color': const Color.fromRGBO(51, 155, 208, 0.65),
-    'textColor': Colors.white,
-  },
-  {
-    'title': 'Pushed',
+    'title': 'Pushed/Not Pushed',
     'color': const Color.fromRGBO(255, 100, 66, 0.71),
     'textColor': Colors.white,
   },
   {
-    'title': 'Not Pushed',
+    'title': 'A-Z',
     'color': const Color.fromRGBO(255, 100, 66, 0.71),
     'textColor': Colors.white,
   },

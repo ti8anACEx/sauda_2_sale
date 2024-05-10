@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sauda_2_sale/constants/colors.dart';
@@ -33,12 +34,11 @@ class ItemCard extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 ClipRRect(
-                  borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
-                    itemController.itemModel!.draftImageLinks[0],
-                    fit: BoxFit.fitWidth,
-                  ),
-                ),
+                    borderRadius: BorderRadius.circular(10),
+                    child: CachedNetworkImage(
+                      imageUrl: itemController.itemModel!.draftImageLinks[0],
+                      fit: BoxFit.fitWidth,
+                    )),
                 5.heightBox,
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,

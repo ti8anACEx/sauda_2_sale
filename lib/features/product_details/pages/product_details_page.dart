@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:sauda_2_sale/commons/widgets/custom_box.dart';
 import 'package:sauda_2_sale/commons/widgets/custom_button.dart';
@@ -70,19 +71,25 @@ class ProductDetailsPage extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Column(
                   children: [
-                    Row(
+                    customBox(
+                        child: Column(
                       children: [
-                        "Agent : ".text.bold.make(),
-                        itemController.itemModel!.agent.text.make(),
+                        Row(
+                          children: [
+                            "Agent : ".text.bold.make(),
+                            itemController.itemModel!.agent.text.make(),
+                          ],
+                        ),
+                        5.heightBox,
+                        Row(
+                          children: [
+                            "Number : ".text.bold.make(),
+                            itemController.itemModel!.agentPhoneNumber.text
+                                .make(),
+                          ],
+                        ),
                       ],
-                    ),
-                    5.heightBox,
-                    Row(
-                      children: [
-                        "Number : ".text.bold.make(),
-                        itemController.itemModel!.agentPhoneNumber.text.make(),
-                      ],
-                    ),
+                    )),
                     15.heightBox,
                     customBox(
                         child: Column(
@@ -104,11 +111,16 @@ class ProductDetailsPage extends StatelessWidget {
                       ],
                     )),
                     15.heightBox,
-                    Row(
-                      children: [
-                        "Description : ".text.bold.make(),
-                        itemController.itemModel!.description.text.make(),
-                      ],
+                    customBox(
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          "Description : ".text.bold.make(),
+                          Expanded(
+                              child: itemController.itemModel!.description.text
+                                  .make()),
+                        ],
+                      ),
                     ),
                   ],
                 ),

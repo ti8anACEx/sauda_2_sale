@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -24,9 +25,9 @@ class ProductImages extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(10),
-                  child: Image.network(
+                  child: CachedNetworkImage(
                       width: 300,
-                      itemController.itemModel!.draftImageLinks[
+                      imageUrl: itemController.itemModel!.draftImageLinks[
                           itemController.displayingImageIndex.value],
                       fit: BoxFit.fitWidth),
                 ),

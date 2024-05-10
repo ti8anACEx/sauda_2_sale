@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:sauda_2_sale/features/home/controllers/item_controller.dart';
 
@@ -27,9 +28,9 @@ class SingleImageview extends StatelessWidget {
             child: SizedBox(
               width: 80,
               height: 80,
-              child: Image.network(
+              child: CachedNetworkImage(
                 fit: BoxFit.cover,
-                singleImageType == SingleImageType.draft
+                imageUrl: singleImageType == SingleImageType.draft
                     ? itemController.itemModel!.draftImageLinks[index]
                     : itemController.pushedImageLinks[index],
               ),

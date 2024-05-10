@@ -142,7 +142,7 @@ class AuthController extends GetxController {
       }
     } catch (e) {
       Get.snackbar("Error Creating Account",
-          "Please make sure you have filled all the details");
+          "Please make sure you have filled all the details $e");
     } finally {
       isLoading.value = false;
     }

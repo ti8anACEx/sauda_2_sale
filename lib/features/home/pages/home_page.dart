@@ -66,7 +66,7 @@ class HomePage extends StatelessWidget {
                           children: List.generate(customTags.length, (index) {
                             return TopicBox(
                               text: customTags[index]['title'],
-                            ).onTap(() async {});
+                            );
                           }),
                         ),
                       ),
