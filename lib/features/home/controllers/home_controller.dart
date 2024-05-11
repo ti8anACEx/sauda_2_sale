@@ -185,19 +185,33 @@ class HomeController extends GetxController {
           children: [
             "Rate".text.make(),
             20.heightBox,
-            Obx(
-              () => RangeSlider(
-                labels: labels.value,
-                divisions: 10,
-                min: min,
-                activeColor: pinkColor,
-                inactiveColor: textfieldGrey.withOpacity(0.3),
-                max: max,
-                values: values.value,
-                onChanged: (newValue) {
-                  values.value = newValue;
-                },
-              ),
+            Column(
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: List.generate(10, (index) {
+                    double val = (min + (max / 10)) * (index + 1);
+                    return Text(
+                      val.toStringAsFixed(0),
+                      style: const TextStyle(fontSize: 9),
+                    );
+                  }),
+                ),
+                Obx(
+                  () => RangeSlider(
+                    labels: labels.value,
+                    divisions: 10,
+                    min: min,
+                    activeColor: pinkColor,
+                    inactiveColor: textfieldGrey.withOpacity(0.3),
+                    max: max,
+                    values: values.value,
+                    onChanged: (newValue) {
+                      values.value = newValue;
+                    },
+                  ),
+                ),
+              ],
             ),
             20.heightBox,
             Row(

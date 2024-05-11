@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_otp_text_field/flutter_otp_text_field.dart';
 import 'package:get/get.dart';
 import 'package:sauda_2_sale/commons/widgets/custom_button.dart';
+import 'package:sauda_2_sale/commons/widgets/custom_progress_indicator.dart';
 import 'package:sauda_2_sale/constants/colors.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../controllers/auth_controller.dart';
@@ -26,7 +27,7 @@ class OTPPage extends StatelessWidget {
               25.heightBox,
               "Sauda Book".text.size(35).semiBold.make(),
               25.heightBox,
-              "Enter the OTP sent to +91 ${authController.phoneNumberController.text}"
+              "Enter the OTP sent to ${authController.countryCode} ${authController.phoneNumberController.text}"
                   .text
                   .align(TextAlign.center)
                   .size(12)
@@ -64,14 +65,16 @@ class OTPPage extends StatelessWidget {
                 ],
               ),
               20.heightBox,
-              CustomButton(
-                text: "Verify",
-                mainAxisAlignment: MainAxisAlignment.center,
-                onTap: () async {
-                  await authController.verifyOTP();
-                },
-                color: pinkColor,
-              ),
+              authController.isLoading.value
+                  ? customProgressIndicator()
+                  : CustomButton(
+                      text: "Verify",
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      onTap: () async {
+                        await authController.verifyOTP();
+                      },
+                      color: pinkColor,
+                    ),
               50.heightBox,
             ],
           ),

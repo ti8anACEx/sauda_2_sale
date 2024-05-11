@@ -4,13 +4,17 @@ import 'package:sauda_2_sale/constants/colors.dart';
 Widget customTextField(
     {TextInputType? textInputType = TextInputType.text,
     String? hint = '',
+    String? prefixText = '',
     int? maxLength,
+    bool isObscured = false,
     String labelText = '',
     required TextEditingController controller}) {
   return TextField(
     controller: controller,
+    obscureText: isObscured,
     decoration: InputDecoration(
       fillColor: fontGrey.withOpacity(0.15),
+      prefixText: prefixText,
       filled: true,
       labelText: labelText,
       labelStyle: const TextStyle(fontWeight: FontWeight.w200, fontSize: 12),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sauda_2_sale/commons/widgets/custom_button.dart';
+import 'package:sauda_2_sale/commons/widgets/custom_progress_indicator.dart';
 import 'package:sauda_2_sale/commons/widgets/custom_text_field.dart';
 import 'package:sauda_2_sale/constants/colors.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -21,15 +22,20 @@ class LoginPage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset('assets/images/sauda2sale_png.png'),
+              Image.asset('assets/images/sauda2sale_png.png').onLongPress(() {
+                authController.toggleToTestCountryCode();
+              }, key),
               50.heightBox,
-              "Sauda Book".text.size(35).semiBold.make(),
+              "Sauda Book".text.size(35).semiBold.make().onLongPress(() {
+                authController.toggleWantEmailLogin();
+              }, key),
               50.heightBox,
               customTextField(
                   labelText: 'Name',
                   controller: authController.usernameController),
               20.heightBox,
               customTextField(
+                  prefixText: '+91',
                   labelText: 'Phone Number',
                   textInputType: TextInputType.phone,
                   controller: authController.phoneNumberController),
@@ -41,19 +47,22 @@ class LoginPage extends StatelessWidget {
               20.heightBox,
               customTextField(
                   labelText: 'Password',
+                  isObscured: true,
                   controller: authController.passwordController),
               100.heightBox,
-              CustomButton(
-                text: "Get OTP",
-                trailingWidget: const Icon(
-                  Icons.arrow_forward_ios,
-                  color: whiteColor,
-                ),
-                onTap: () async {
-                  await authController.getOTP();
-                },
-                color: pinkColor,
-              ),
+              authController.isLoading.value
+                  ? customProgressIndicator()
+                  : CustomButton(
+                      text: "Get OTP",
+                      trailingWidget: const Icon(
+                        Icons.arrow_forward_ios,
+                        color: whiteColor,
+                      ),
+                      onTap: () async {
+                        await authController.getOTP();
+                      },
+                      color: pinkColor,
+                    ),
               50.heightBox,
             ],
           ),
