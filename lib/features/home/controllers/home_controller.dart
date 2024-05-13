@@ -13,7 +13,7 @@ class HomeController extends GetxController {
   TextEditingController searchController = TextEditingController();
   RxBool isLoading = true.obs;
   RxBool isSearching = false.obs;
-  double min = 0, max = 500; // for Price filters
+  double min = 0, max = 150; // for Price filters
 
   RxList<DocumentSnapshot> searchedItems = <DocumentSnapshot>[].obs;
   RxList<DocumentSnapshot> filteredSearchItems = <DocumentSnapshot>[].obs;
@@ -104,7 +104,7 @@ class HomeController extends GetxController {
   Future<void> filteredSearchQuery({
     String collection = 'items',
     double minRate = 0,
-    double maxRate = 500,
+    double maxRate = 150,
     String orderBy = '',
     bool oldestFirst = false,
     bool newestFirst = false,

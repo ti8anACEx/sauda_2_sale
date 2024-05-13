@@ -1,5 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
@@ -7,7 +6,6 @@ import 'package:sauda_2_sale/commons/widgets/custom_progress_indicator.dart';
 import 'package:sauda_2_sale/commons/widgets/custom_search_bar.dart';
 import 'package:sauda_2_sale/constants/colors.dart';
 import 'package:sauda_2_sale/constants/lists.dart';
-import 'package:sauda_2_sale/features/auth/pages/login_page.dart';
 import 'package:sauda_2_sale/features/home/controllers/home_controller.dart';
 import 'package:sauda_2_sale/features/home/controllers/item_controller.dart';
 import 'package:sauda_2_sale/features/home/widgets/item_card.dart';
