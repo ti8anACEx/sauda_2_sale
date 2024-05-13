@@ -86,13 +86,14 @@ class PushToSaleController extends GetxController {
   }
 
   bool ckeckIfNotEmpty() {
-    return rateController.text.isNotEmpty &&
-        dateController.text.isNotEmpty &&
-        descriptionController.text.isNotEmpty &&
-        productNameController.text.isNotEmpty &&
-        pushedImagesAsBytes.isNotEmpty &&
-        pushedImageLinks.isNotEmpty &&
-        pushedImageLinks.length == pushedImagesAsBytes.length;
+    // return rateController.text.isNotEmpty &&
+    //     dateController.text.isNotEmpty &&
+    //     descriptionController.text.isNotEmpty &&
+    //     productNameController.text.isNotEmpty &&
+    //     pushedImagesAsBytes.isNotEmpty &&
+    //     pushedImageLinks.isNotEmpty &&
+    // pushedImageLinks.length == pushedImagesAsBytes.length;
+    return pushedImageLinks.length == pushedImagesAsBytes.length;
   }
 
   Future<void> pushToSale() async {

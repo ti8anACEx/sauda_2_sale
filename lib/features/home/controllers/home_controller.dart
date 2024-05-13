@@ -52,8 +52,10 @@ class HomeController extends GetxController {
           .collection('items')
           .where('vendorUid', isEqualTo: authController.currentUserUID.value)
           .get();
-      items.value = querySnapshot.docs;
 
+      items.value = querySnapshot.docs;
+      items.sort((a, b) => (b['datePublished'] as Timestamp)
+          .compareTo(a['datePublished'] as Timestamp));
       isLoading.value = false;
     } catch (e) {
       Get.snackbar("Error", 'Failed to load posts');

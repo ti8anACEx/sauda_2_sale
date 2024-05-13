@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,13 +9,16 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:sauda_2_sale/features/auth/controllers/auth_controller.dart';
-import 'package:sauda_2_sale/features/home/controllers/home_controller.dart';
-import 'package:sauda_2_sale/models/item_model.dart';
+import 'package:sauda_2_sale/features/home/controllers/item_controller.dart';
+import 'package:sauda_2_sale/features/home/pages/home_page.dart';
 import 'package:uuid/uuid.dart';
 import 'package:velocity_x/velocity_x.dart';
 
-class UploadController extends GetxController {
+import '../../../models/item_model.dart';
+import '../../auth/controllers/auth_controller.dart';
+import '../../home/controllers/home_controller.dart';
+
+class EditController extends GetxController {
   TextEditingController rateController = TextEditingController();
   TextEditingController dateController = TextEditingController();
   TextEditingController weaverProductNameController = TextEditingController();
@@ -37,6 +41,22 @@ class UploadController extends GetxController {
 
   RxBool isLoading = false.obs;
   RxBool isUploadingFiles = false.obs;
+  ItemController itemController;
+
+  EditController({required this.itemController}) {
+    rateController.text = itemController.itemModel!.draftRate;
+    dateController.text = itemController.itemModel!.draftDate;
+    weaverProductNameController.text =
+        itemController.itemModel!.weaverProductName;
+    descriptionController.text = itemController.itemModel!.description;
+    newNameController.text = itemController.itemModel!.draftProductName;
+    agentNameController.text = itemController.itemModel!.agent;
+    agentPhoneNumberController.text =
+        itemController.itemModel!.agentPhoneNumber;
+    weaverPhoneNumberController.text =
+        itemController.itemModel!.weaverPhoneNumber;
+    weaverNameController.text = itemController.itemModel!.weaver;
+  }
 
   Future<void> pickFiles() async {
     try {
@@ -186,5 +206,68 @@ class UploadController extends GetxController {
     //     agentNameController.text.isNotEmpty &&
     //     agentPhoneNumberController.text.isNotEmpty &&
     //     weaverPhoneNumberController.text.isNotEmpty;
+  }
+
+  Future<void> pushToSale() async {
+    uploadFilesForUpdate().then((value) async {
+      Map<String, dynamic> fieldsToUpdate = {
+        'draftRate': rateController.text,
+        'draftDate': dateController.text,
+        'description': descriptionController.text,
+        'draftImageLinks': [],
+        'agent': agentNameController.text,
+        'darftDate': dateController.text,
+        'agentPhoneNumber': agentPhoneNumberController.text,
+        'draftProductName': newNameController.text,
+        'weaver': weaverNameController.text,
+        'weaverPhoneNumber': weaverPhoneNumberController.text,
+        'weaverProductName': weaverProductNameController.text,
+      };
+      await updateItemFields(fieldsToUpdate);
+    });
+  }
+
+  Future<void> uploadFilesForUpdate() async {
+    draftImagesLinks.clear();
+    isUploadingFiles.value = true;
+    try {
+      for (int i = 0; i < draftImagesAsBytes.length; i++) {
+        Uint8List fileBytes = draftImagesAsBytes[i];
+
+        String draftImageName = 'draft_image_$i';
+
+        Reference storageReference = storage.ref().child(
+            'uploads/items/${itemController.itemModel!.itemId}/draftImages/$draftImageName');
+        UploadTask uploadTask = storageReference.putData(fileBytes);
+
+        TaskSnapshot taskSnapshot = await uploadTask.whenComplete(() {});
+        String downloadURL = await taskSnapshot.ref.getDownloadURL();
+        draftImagesLinks.add(downloadURL);
+      }
+    } catch (e) {
+      Get.snackbar("Error", e.toString());
+    } finally {
+      isUploadingFiles.value = false;
+    }
+  }
+
+  // Update function
+  Future<void> updateItemFields(Map<String, dynamic> fieldsToUpdate) async {
+    try {
+      DocumentReference itemRef = FirebaseFirestore.instance
+          .collection('items')
+          .doc(itemController.itemModel!.itemId);
+      await itemRef.update(fieldsToUpdate);
+      itemController.isPushedToSale.value = true;
+      Get.snackbar('Success', 'Pushed to sale successfully!');
+
+      Get.offAll(HomePage());
+
+      itemController.refresh();
+      Get.off(() => HomePage());
+    } catch (e) {
+      log('Error updating item fields: $e');
+      // Handle error here
+    }
   }
 }

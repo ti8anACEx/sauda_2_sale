@@ -96,7 +96,7 @@ class ItemModel {
       pushedProductName: snapshot['pushedProductName'],
       weaver: snapshot['weaver'],
       weaverPhoneNumber: snapshot['weaverPhoneNumber'],
-      weaverProductName: snapshot['weaverPhoneNumber'],
+      weaverProductName: snapshot['weaverProductName'],
     );
   }
 }

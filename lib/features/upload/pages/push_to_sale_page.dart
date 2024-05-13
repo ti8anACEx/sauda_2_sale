@@ -62,17 +62,17 @@ class PushToSalePage extends StatelessWidget {
                       ),
                     ),
                     20.widthBox,
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          "Date".text.make(),
-                          5.heightBox,
-                          smallTextField(
-                              controller: pushToSaleController.dateController),
-                        ],
-                      ),
-                    ),
+                    // Expanded(
+                    //   child: Column(
+                    //     crossAxisAlignment: CrossAxisAlignment.start,
+                    //     children: [
+                    //       "Date".text.make(),
+                    //       5.heightBox,
+                    //       smallTextField(
+                    //           controller: pushToSaleController.dateController),
+                    //     ],
+                    //   ),
+                    // ),
                   ],
                 ),
                 15.heightBox,

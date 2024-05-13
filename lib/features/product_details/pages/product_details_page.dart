@@ -5,6 +5,8 @@ import 'package:sauda_2_sale/commons/widgets/custom_box.dart';
 import 'package:sauda_2_sale/commons/widgets/custom_button.dart';
 import 'package:sauda_2_sale/constants/colors.dart';
 import 'package:sauda_2_sale/features/home/controllers/item_controller.dart';
+import 'package:sauda_2_sale/features/product_details/controllers/edit_controller.dart';
+import 'package:sauda_2_sale/features/product_details/pages/edit_page.dart';
 import 'package:sauda_2_sale/features/product_details/widgets/product_images.dart';
 import 'package:sauda_2_sale/features/upload/pages/push_to_sale_page.dart';
 import 'package:velocity_x/velocity_x.dart';
@@ -33,12 +35,20 @@ class ProductDetailsPage extends StatelessWidget {
             Get.back();
             itemController.isRequestingRevoke.value = false;
           }),
-          // actions: const [
-          //   Icon(
-          //     Icons.more_vert,
-          //     color: blackColor,
-          //   )
-          // ],
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(6),
+              child: const Icon(
+                Icons.edit,
+                color: blackColor,
+              ).onTap(() {
+                EditController editController = Get.put(
+                    EditController(itemController: itemController),
+                    tag: 'edit-controller-${itemController.itemModel!.itemId}');
+                Get.to(() => EditPage(editController: editController));
+              }),
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Column(
@@ -136,15 +146,21 @@ class ProductDetailsPage extends StatelessWidget {
                           children: [
                             ElevatedButton(
                               onPressed: () async {
+                                String encodedImageUrl = Uri.encodeFull(
+                                    itemController
+                                        .itemModel!.draftImageLinks[0]);
                                 // ignore: prefer_interpolation_to_compose_strings
                                 String url = APIs.whatsappLink1 +
                                     APIs.whatsappLink2 +
-                                    itemController.itemModel!.agentPhoneNumber +
+                                    itemController
+                                        .itemModel!.weaverPhoneNumber +
                                     APIs.whatsappLink4 +
                                     'Hello, I want to Re-Order the item - ' +
                                     itemController.itemModel!.draftProductName +
                                     ', Desc: ' +
                                     itemController.itemModel!.description +
+                                    '&image=' +
+                                    encodedImageUrl +
                                     APIs.whatsappLink6;
                                 launchTheUrl(url);
                               },
@@ -166,6 +182,9 @@ class ProductDetailsPage extends StatelessWidget {
                                     itemController.itemModel!.draftProductName +
                                     ', Desc: ' +
                                     itemController.itemModel!.description +
+                                    '*Product Image Link:* ' +
+                                    itemController
+                                        .itemModel!.draftImageLinks[0] +
                                     APIs.whatsappLink6;
                                 launchTheUrl(url);
                               },
@@ -259,7 +278,24 @@ class ProductDetailsPage extends StatelessWidget {
                       alignment: WrapAlignment.center,
                       children: [
                         ElevatedButton(
-                          onPressed: () async {},
+                          onPressed: () async {
+                            String encodedImageUrl = Uri.encodeFull(
+                                itemController.itemModel!.draftImageLinks[0]);
+
+                            // ignore: prefer_interpolation_to_compose_strings
+                            String url = APIs.whatsappLink1 +
+                                APIs.whatsappLink2 +
+                                itemController.itemModel!.weaverPhoneNumber +
+                                APIs.whatsappLink4 +
+                                'Hello, I want to Re-Order the item - ' +
+                                itemController.itemModel!.draftProductName +
+                                ', Desc: ' +
+                                itemController.itemModel!.description +
+                                '&image=' +
+                                encodedImageUrl +
+                                APIs.whatsappLink6;
+                            launchTheUrl(url);
+                          },
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(7)),
@@ -267,7 +303,21 @@ class ProductDetailsPage extends StatelessWidget {
                           child: "Re-order".text.make(),
                         ),
                         ElevatedButton(
-                          onPressed: () async {},
+                          onPressed: () async {
+                            // ignore: prefer_interpolation_to_compose_strings
+                            String url = APIs.whatsappLink1 +
+                                APIs.whatsappLink2 +
+                                itemController.itemModel!.weaverPhoneNumber +
+                                APIs.whatsappLink4 +
+                                'Hello, What\'s the price for - ' +
+                                itemController.itemModel!.draftProductName +
+                                ', Desc: ' +
+                                itemController.itemModel!.description +
+                                '*Product Image Link:* ' +
+                                itemController.itemModel!.draftImageLinks[0] +
+                                APIs.whatsappLink6;
+                            launchTheUrl(url);
+                          },
                           style: ElevatedButton.styleFrom(
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(7)),
