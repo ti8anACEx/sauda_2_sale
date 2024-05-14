@@ -69,10 +69,14 @@ class UploadController extends GetxController {
 
   Future<void> pickFilesWithCamera() async {
     try {
-      final pickedImages = await ImagePicker().pickMultiImage();
+      List<XFile?> pickedImages = [];
+      for (var i = 0; i < 4; i++) {
+        pickedImages
+            .add(await ImagePicker().pickImage(source: ImageSource.camera));
+      }
 
       for (final image in pickedImages) {
-        final imageBytes = await File(image.path).readAsBytes();
+        final imageBytes = await File(image!.path).readAsBytes();
         draftImagesAsBytes.add(imageBytes);
       }
     } catch (e) {
