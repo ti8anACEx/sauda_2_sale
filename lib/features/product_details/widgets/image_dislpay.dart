@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:getwidget/components/carousel/gf_items_carousel.dart';
 import 'package:sauda_2_sale/constants/colors.dart';
 import 'package:sauda_2_sale/features/product_details/controllers/edit_controller.dart';
-import 'package:sauda_2_sale/features/upload/widgets/single_image_selection.dart';
 import 'package:velocity_x/velocity_x.dart';
+
+import 'single_image_selection.dart';
 
 // ignore: must_be_immutable
 class ImageDisplay extends StatelessWidget {
@@ -44,7 +45,8 @@ class ImageDisplay extends StatelessWidget {
                           children: List.generate(
                               editController.draftImagesAsBytes.length,
                               (index) {
-                            return SingleImageSelection(index: index);
+                            return SingleImageSelection(
+                                editController: editController, index: index);
                           })),
                   5.heightBox,
                   Row(

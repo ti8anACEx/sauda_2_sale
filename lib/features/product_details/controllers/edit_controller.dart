@@ -2,7 +2,6 @@ import 'dart:developer';
 import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:file_picker/file_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -12,7 +11,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:sauda_2_sale/features/home/controllers/item_controller.dart';
 import 'package:sauda_2_sale/features/home/pages/home_page.dart';
 import 'package:uuid/uuid.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 import '../../../models/item_model.dart';
 import '../../auth/controllers/auth_controller.dart';
@@ -58,28 +56,24 @@ class EditController extends GetxController {
     weaverNameController.text = itemController.itemModel!.weaver;
   }
 
+  void checkAndClearList({int extra = 0}) {
+    if ((draftImagesAsBytes.length + extra) >= 4) {
+      draftImagesAsBytes.clear();
+    }
+  }
+
   Future<void> pickFiles() async {
     try {
-      var files = await FilePicker.platform.pickFiles(
-          type: FileType.image, allowMultiple: true, allowCompression: true);
-      draftImagesAsBytes.clear();
-
-      if (files != null && files.files.length > 4) {
-        VxToast.show(Get.context!,
-            msg:
-                "Maximum 4 images allowed"); // restricting number of images to 4
-      }
-
-      if (!kIsWeb) {
-        if (files != null && files.files.isNotEmpty) {
-          for (int i = 0; i < files.files.length; i++) {
-            draftImagesAsBytes
-                .add(await File(files.files[i].path!).readAsBytes());
-          }
-        }
-      } else if (files != null && files.files.isNotEmpty) {
-        for (int i = 0; i < files.files.length; i++) {
-          draftImagesAsBytes.add(files.files[i].bytes!);
+      checkAndClearList();
+      var pickedImgs = await ImagePicker().pickMultiImage();
+      checkAndClearList(extra: pickedImgs.length);
+      var len = 0;
+      for (final image in pickedImgs) {
+        len++;
+        final imageBytes = await File(image.path).readAsBytes();
+        draftImagesAsBytes.add(imageBytes);
+        if (len >= 4) {
+          return;
         }
       }
     } catch (e) {
@@ -89,12 +83,12 @@ class EditController extends GetxController {
 
   Future<void> pickFilesWithCamera() async {
     try {
-      final pickedImages = await ImagePicker().pickMultiImage();
+      checkAndClearList();
 
-      for (final image in pickedImages) {
-        final imageBytes = await File(image.path).readAsBytes();
-        draftImagesAsBytes.add(imageBytes);
-      }
+      var image = await ImagePicker().pickImage(source: ImageSource.camera);
+
+      final imageBytes = await File(image!.path).readAsBytes();
+      draftImagesAsBytes.add(imageBytes);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

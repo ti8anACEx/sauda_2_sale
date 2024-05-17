@@ -106,7 +106,7 @@ class EditPage extends StatelessWidget {
                   editController.isLoading.value
                       ? customProgressIndicator()
                       : CustomButton(
-                          text: 'Upload as draft',
+                          text: 'Finish Editing',
                           onTap: () async {
                             await editController.uploadAsDraft();
                           },

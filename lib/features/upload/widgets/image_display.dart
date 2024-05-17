@@ -32,7 +32,7 @@ class ImageDisplay extends StatelessWidget {
                   15.heightBox,
                   "Selected ${uploadController.draftImagesAsBytes.length.toString()}/4 images"
                       .text
-                      .color(whiteColor)
+                      .color(blackColor)
                       .make(),
                   10.heightBox,
                   uploadController.draftImagesAsBytes.isEmpty

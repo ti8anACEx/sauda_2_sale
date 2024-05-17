@@ -33,28 +33,24 @@ class PushToSaleController extends GetxController {
 
   PushToSaleController({required this.itemController});
 
+  void checkAndClearList({int extra = 0}) {
+    if ((pushedImagesAsBytes.length + extra) >= 4) {
+      pushedImagesAsBytes.clear();
+    }
+  }
+
   Future<void> pickFiles() async {
     try {
-      var files = await FilePicker.platform.pickFiles(
-          type: FileType.image, allowMultiple: true, allowCompression: true);
-      pushedImagesAsBytes.clear();
-
-      if (files != null && files.files.length > 4) {
-        VxToast.show(Get.context!,
-            msg:
-                "Maximum 4 images allowed"); // restricting number of images to 4
-      }
-
-      if (!kIsWeb) {
-        if (files != null && files.files.isNotEmpty) {
-          for (int i = 0; i < files.files.length; i++) {
-            pushedImagesAsBytes
-                .add(await File(files.files[i].path!).readAsBytes());
-          }
-        }
-      } else if (files != null && files.files.isNotEmpty) {
-        for (int i = 0; i < files.files.length; i++) {
-          pushedImagesAsBytes.add(files.files[i].bytes!);
+      checkAndClearList();
+      var pickedImgs = await ImagePicker().pickMultiImage();
+      checkAndClearList(extra: pickedImgs.length);
+      var len = 0;
+      for (final image in pickedImgs) {
+        len++;
+        final imageBytes = await File(image.path).readAsBytes();
+        pushedImagesAsBytes.add(imageBytes);
+        if (len >= 4) {
+          return;
         }
       }
     } catch (e) {
@@ -64,22 +60,12 @@ class PushToSaleController extends GetxController {
 
   Future<void> pickFilesWithCamera() async {
     try {
-      final pickedImages = await ImagePicker().pickMultiImage();
+      checkAndClearList();
 
-      // ignore: unnecessary_null_comparison
-      if (pickedImages != null) {
-        if (pickedImages.length > 4) {
-          Get.snackbar('Attention', "Maximum 4 images allowed");
-          return; // Exit the function if more than 4 images are picked
-        }
+      var image = await ImagePicker().pickImage(source: ImageSource.camera);
 
-        for (final image in pickedImages) {
-          final imageBytes = await File(image.path).readAsBytes();
-          pushedImagesAsBytes.add(imageBytes);
-        }
-      } else {
-        log('User canceled or closed the camera');
-      }
+      final imageBytes = await File(image!.path).readAsBytes();
+      pushedImagesAsBytes.add(imageBytes);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

@@ -12,7 +12,6 @@ import 'package:sauda_2_sale/features/auth/controllers/auth_controller.dart';
 import 'package:sauda_2_sale/features/home/controllers/home_controller.dart';
 import 'package:sauda_2_sale/models/item_model.dart';
 import 'package:uuid/uuid.dart';
-import 'package:velocity_x/velocity_x.dart';
 
 class UploadController extends GetxController {
   TextEditingController rateController = TextEditingController();
@@ -38,28 +37,24 @@ class UploadController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isUploadingFiles = false.obs;
 
+  void checkAndClearList({int extra = 0}) {
+    if ((draftImagesAsBytes.length + extra) >= 4) {
+      draftImagesAsBytes.clear();
+    }
+  }
+
   Future<void> pickFiles() async {
     try {
-      var files = await FilePicker.platform.pickFiles(
-          type: FileType.image, allowMultiple: true, allowCompression: true);
-      draftImagesAsBytes.clear();
-
-      if (files != null && files.files.length > 4) {
-        VxToast.show(Get.context!,
-            msg:
-                "Maximum 4 images allowed"); // restricting number of images to 4
-      }
-
-      if (!kIsWeb) {
-        if (files != null && files.files.isNotEmpty) {
-          for (int i = 0; i < files.files.length; i++) {
-            draftImagesAsBytes
-                .add(await File(files.files[i].path!).readAsBytes());
-          }
-        }
-      } else if (files != null && files.files.isNotEmpty) {
-        for (int i = 0; i < files.files.length; i++) {
-          draftImagesAsBytes.add(files.files[i].bytes!);
+      checkAndClearList();
+      var pickedImgs = await ImagePicker().pickMultiImage();
+      checkAndClearList(extra: pickedImgs.length);
+      var len = 0;
+      for (final image in pickedImgs) {
+        len++;
+        final imageBytes = await File(image.path).readAsBytes();
+        draftImagesAsBytes.add(imageBytes);
+        if (len >= 4) {
+          return;
         }
       }
     } catch (e) {
@@ -69,16 +64,12 @@ class UploadController extends GetxController {
 
   Future<void> pickFilesWithCamera() async {
     try {
-      List<XFile?> pickedImages = [];
-      for (var i = 0; i < 4; i++) {
-        pickedImages
-            .add(await ImagePicker().pickImage(source: ImageSource.camera));
-      }
+      checkAndClearList();
 
-      for (final image in pickedImages) {
-        final imageBytes = await File(image!.path).readAsBytes();
-        draftImagesAsBytes.add(imageBytes);
-      }
+      var image = await ImagePicker().pickImage(source: ImageSource.camera);
+
+      final imageBytes = await File(image!.path).readAsBytes();
+      draftImagesAsBytes.add(imageBytes);
     } catch (e) {
       Get.snackbar("Error", e.toString());
     }

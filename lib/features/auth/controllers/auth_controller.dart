@@ -181,7 +181,6 @@ class AuthController extends GetxController {
     await firestore
         .collection('vendors')
         .where('username', isEqualTo: usernameController.text)
-        .where('phoneNumber', isEqualTo: phoneNumberController.text)
         .where('email', isEqualTo: emailController.text)
         .get()
         .then((QuerySnapshot snapshot) {
