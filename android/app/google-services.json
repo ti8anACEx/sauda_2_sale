@@ -1,21 +1,21 @@
 {
   "project_info": {
-    "project_number": "3207173302",
-    "project_id": "innodify-db-firebase",
-    "storage_bucket": "innodify-db-firebase.appspot.com"
+    "project_number": "123510033549",
+    "project_id": "innodify-db",
+    "storage_bucket": "innodify-db.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:3207173302:android:17da3bf3751f223270c217",
+        "mobilesdk_app_id": "1:123510033549:android:3999a57f0b0d3fcd5526c4",
         "android_client_info": {
-          "package_name": "com.example.innodify_customer_app"
+          "package_name": "com.example.email_password_login"
         }
       },
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCVzhuk6v_Dn4RHF4bVXG9halWNqII35t0"
+          "current_key": "AIzaSyBoPfxZMbF1nWJDeh6-5H3baJ26-zf8-HY"
         }
       ],
       "services": {
@@ -26,7 +26,26 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:3207173302:android:ec98537f898c288570c217",
+        "mobilesdk_app_id": "1:123510033549:android:e601427b868552d35526c4",
+        "android_client_info": {
+          "package_name": "com.example.test_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBoPfxZMbF1nWJDeh6-5H3baJ26-zf8-HY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123510033549:android:af9137969e6647245526c4",
         "android_client_info": {
           "package_name": "com.innodify.RishaCreations"
         }
@@ -34,7 +53,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCVzhuk6v_Dn4RHF4bVXG9halWNqII35t0"
+          "current_key": "AIzaSyBoPfxZMbF1nWJDeh6-5H3baJ26-zf8-HY"
         }
       ],
       "services": {
@@ -45,7 +64,7 @@
     },
     {
       "client_info": {
-        "mobilesdk_app_id": "1:3207173302:android:f31b5167f8b80bc770c217",
+        "mobilesdk_app_id": "1:123510033549:android:c4e4e9fcdb1496b85526c4",
         "android_client_info": {
           "package_name": "com.innodify.Sauda2Sale"
         }
@@ -53,26 +72,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyCVzhuk6v_Dn4RHF4bVXG9halWNqII35t0"
-        }
-      ],
-      "services": {
-        "appinvite_service": {
-          "other_platform_oauth_client": []
-        }
-      }
-    },
-    {
-      "client_info": {
-        "mobilesdk_app_id": "1:3207173302:android:81a26a457c4b7c0570c217",
-        "android_client_info": {
-          "package_name": "com.innodify.vendor.innodify_vendor_app"
-        }
-      },
-      "oauth_client": [],
-      "api_key": [
-        {
-          "current_key": "AIzaSyCVzhuk6v_Dn4RHF4bVXG9halWNqII35t0"
+          "current_key": "AIzaSyBoPfxZMbF1nWJDeh6-5H3baJ26-zf8-HY"
         }
       ],
       "services": {

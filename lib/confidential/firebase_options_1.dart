@@ -41,48 +41,48 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyB2elyh-adPfZAIr09Dp0t_FVuJKQlTWGw',
-    appId: '1:123510033549:web:0821ef93c61a1b7b5526c4',
-    messagingSenderId: '123510033549',
-    projectId: 'innodify-db',
-    authDomain: 'innodify-db.firebaseapp.com',
-    storageBucket: 'innodify-db.appspot.com',
-    measurementId: 'G-MN7TF87K62',
+    apiKey: 'AIzaSyDaomKBUfaEylecfMzz6mGEOCFZx-s6vZ0',
+    appId: '1:3207173302:web:480137dee12ff68c70c217',
+    messagingSenderId: '3207173302',
+    projectId: 'innodify-db-firebase',
+    authDomain: 'innodify-db-firebase.firebaseapp.com',
+    storageBucket: 'innodify-db-firebase.appspot.com',
+    measurementId: 'G-FVERKBHFM9',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyBoPfxZMbF1nWJDeh6-5H3baJ26-zf8-HY',
-    appId: '1:123510033549:android:c4e4e9fcdb1496b85526c4',
-    messagingSenderId: '123510033549',
-    projectId: 'innodify-db',
-    storageBucket: 'innodify-db.appspot.com',
+    apiKey: 'AIzaSyCVzhuk6v_Dn4RHF4bVXG9halWNqII35t0',
+    appId: '1:3207173302:android:f31b5167f8b80bc770c217',
+    messagingSenderId: '3207173302',
+    projectId: 'innodify-db-firebase',
+    storageBucket: 'innodify-db-firebase.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyA2GqridjZ-497LjwbOjL8thlr-ic1RjbE',
-    appId: '1:123510033549:ios:2ed4b112f4cd9e375526c4',
-    messagingSenderId: '123510033549',
-    projectId: 'innodify-db',
-    storageBucket: 'innodify-db.appspot.com',
+    apiKey: 'AIzaSyB_uZ2xPopAP-HltTdoCZNYsMPsYW54fzk',
+    appId: '1:3207173302:ios:0f48d4e7597d508570c217',
+    messagingSenderId: '3207173302',
+    projectId: 'innodify-db-firebase',
+    storageBucket: 'innodify-db-firebase.appspot.com',
     iosBundleId: 'com.innodify.Sauda2Sale',
   );
 
   static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyA2GqridjZ-497LjwbOjL8thlr-ic1RjbE',
-    appId: '1:123510033549:ios:8309951334ce90445526c4',
-    messagingSenderId: '123510033549',
-    projectId: 'innodify-db',
-    storageBucket: 'innodify-db.appspot.com',
+    apiKey: 'AIzaSyB_uZ2xPopAP-HltTdoCZNYsMPsYW54fzk',
+    appId: '1:3207173302:ios:6152338b0ccd152c70c217',
+    messagingSenderId: '3207173302',
+    projectId: 'innodify-db-firebase',
+    storageBucket: 'innodify-db-firebase.appspot.com',
     iosBundleId: 'com.example.sauda2Sale',
   );
 
   static const FirebaseOptions windows = FirebaseOptions(
-    apiKey: 'AIzaSyB2elyh-adPfZAIr09Dp0t_FVuJKQlTWGw',
-    appId: '1:123510033549:web:31f81deb15168b805526c4',
-    messagingSenderId: '123510033549',
-    projectId: 'innodify-db',
-    authDomain: 'innodify-db.firebaseapp.com',
-    storageBucket: 'innodify-db.appspot.com',
-    measurementId: 'G-ZERNH9K1FV',
+    apiKey: 'AIzaSyDaomKBUfaEylecfMzz6mGEOCFZx-s6vZ0',
+    appId: '1:3207173302:web:8311bfbbb140416e70c217',
+    messagingSenderId: '3207173302',
+    projectId: 'innodify-db-firebase',
+    authDomain: 'innodify-db-firebase.firebaseapp.com',
+    storageBucket: 'innodify-db-firebase.appspot.com',
+    measurementId: 'G-1VW0KM0R28',
   );
 }
